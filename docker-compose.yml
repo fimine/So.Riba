@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  crossover.riba.api:
+    image: crossover.riba.api
+    build:
+      context: ./CrossOver.RIBA.Api
+      dockerfile: Dockerfile
