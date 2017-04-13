@@ -8,20 +8,29 @@
     <UserSecretsId>aspnet-CrossOver.RIBA.Api-58eee1a5-e0bc-4881-99b6-ed76cb2bd72b</UserSecretsId>
     <WebProject_DirectoryAccessLevelKey>1</WebProject_DirectoryAccessLevelKey>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
+    <PackageTargetFallback>portable-net45+win8</PackageTargetFallback>
   </PropertyGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.0.2" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="1.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="1.1.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="1.1.1" />
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="1.1.1" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="1.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="1.1.0" />
+    <PackageReference Include="Swashbuckle" Version="6.0.0-beta902" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0-rc3" />
   </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="1.0.0" />

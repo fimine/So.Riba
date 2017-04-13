@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CrossOver.RIBA.Data.Contexts
 {
-	public class CrossOverContext : DbContext
+	public class CrossOverContext : DbContext,  ICrossOverContext
 	{
 
 		public CrossOverContext(DbContextOptions<CrossOverContext> options) : base(options)
@@ -18,8 +18,6 @@ namespace CrossOver.RIBA.Data.Contexts
 			modelBuilder.Entity<Models.User>()
 				.HasIndex(p => p.UserName)
 				.IsUnique();
-				
-				
 		}
 
 		public DbSet<Models.User> Users {get; set;}

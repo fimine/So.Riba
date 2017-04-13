@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using CrossOver.RIBA.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
+using CrossOver.RIBA.Api.Services;
+using Microsoft.AspNetCore.Routing;
 
 namespace CrossOver.RIBA.Api
 {
@@ -39,10 +41,13 @@ namespace CrossOver.RIBA.Api
             // Add framework services.
             services.AddMvc();
 
+			services.AddSwaggerGen();
 			// Add Data:
 			var connection = Configuration["ConnectionStrings:CrossOverDB"];
 			services.AddDbContext<CrossOverContext>(options=>options.UseSqlServer(connection, b => b.MigrationsAssembly("CrossOver.RIBA.Data")));
 
+			services.AddScoped<IUserService, UserService>();
+			
 		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,7 +62,20 @@ namespace CrossOver.RIBA.Api
                 Audience = Configuration["Authentication:AzureAd:Audience"]
             });
 
-            app.UseMvc();
-        }
+			//	app.UseMvc(routes => RegisterRoutes(routes));
+			app.UseMvcWithDefaultRoute();
+
+			app.UseSwagger();
+			app.UseSwaggerUi();
+		}
+
+		//private void RegisterRoutes(IRouteBuilder routes)
+		//{
+		//	routes.MapRoute(
+		//		name: "Default",
+		//		template : "{controller}/{action}/{id?}", 
+		//		defaults: new { controller = "Home", action = "Index"}
+		//		);
+		//}
     }
 }

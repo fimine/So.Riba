@@ -2,15 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using CrossOver.RIBA.Api.Services;
+
+// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CrossOver.RIBA.Api.Controllers
 {
-   // [Authorize]
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class UserController : Controller
     {
+
+		IUserService _userService;
+		
+		public UserController(IUserService userService)
+		{
+			this._userService = userService;
+		}
+
+		[HttpPost]
+		public int Login([FromBody]string username, [FromBody]string password)
+		{
+			var ret = this._userService.Login(username, password);
+
+			return default(int);
+		}
+
         // GET: api/values
         [HttpGet]
         public IEnumerable<string> Get()
@@ -29,21 +46,18 @@ namespace CrossOver.RIBA.Api.Controllers
         [HttpPost]
         public void Post([FromBody]string value)
         {
-            // For more information on protecting this API from Cross Site Request Forgery (CSRF) attacks, see https://go.microsoft.com/fwlink/?LinkID=717803
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
-            // For more information on protecting this API from Cross Site Request Forgery (CSRF) attacks, see https://go.microsoft.com/fwlink/?LinkID=717803
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            // For more information on protecting this API from Cross Site Request Forgery (CSRF) attacks, see https://go.microsoft.com/fwlink/?LinkID=717803
         }
     }
 }
