@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using CrossOver.RIBA.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace CrossOver.RIBA.Api
 {
@@ -36,7 +38,12 @@ namespace CrossOver.RIBA.Api
         {
             // Add framework services.
             services.AddMvc();
-        }
+
+			// Add Data:
+			var connection = Configuration["ConnectionStrings:CrossOverDB"];
+			services.AddDbContext<CrossOverContext>(options=>options.UseSqlServer(connection, b => b.MigrationsAssembly("CrossOver.RIBA.Data")));
+
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

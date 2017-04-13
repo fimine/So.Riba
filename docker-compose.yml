@@ -6,3 +6,9 @@ services:
     build:
       context: ./CrossOver.RIBA.Api
       dockerfile: Dockerfile
+
+  crossover.riba.data:
+    image: crossover.riba.data
+    build:
+      context: ./CrossOver.RIBA.Data
+      dockerfile: Dockerfile
